@@ -1,6 +1,4 @@
 
-var angular = require('angular');
-
 var validation = angular.module('validationModule',['ngMessages']);
 
 validation.controller('validationController', function () {

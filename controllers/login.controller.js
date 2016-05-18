@@ -14,7 +14,8 @@ router.get('/', function (req, res) {
     res.render('login', viewData);
 });
 
-router.post('/', function (req, res) {
+router.post('/', function (
+    req, res) {
     // authenticate using api to maintain clean separation between layers
     request.post({
         url: config.apiUrl + '/users/authenticate',

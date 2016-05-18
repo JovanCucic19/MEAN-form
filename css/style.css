@@ -1,0 +1,95 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+
+*[role="form"] {
+    max-width: 530px;
+    padding: 15px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 0.3em;
+
+}
+
+*[role="form"] h2 {
+    margin-left: 5em;
+    margin-bottom: 1em;
+}
+
+*[role="register-form"] {
+    max-width: 530px;
+    padding: 15px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 0.3em;
+}
+
+*[role="register-form"] h2 {
+    margin-left: 5em;
+    margin-bottom: 1em;
+}
+
+.text-vertical-center {
+    display: table-cell;
+    text-align: center;
+    color: #FFF;
+    vertical-align: middle;
+}
+
+.text-vertical-center h1 {
+    margin: 0;
+    padding-right: 250px;
+    font-size: 4.5em;
+    font-weight: 700;
+}
+
+.header {
+    display: table;
+    position: relative;
+    color: #FFFFFF;
+    width: 100%;
+    height: 100%;
+    background: url(/images/bck.jpg) no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.about {
+    padding: 50px 0;
+}
+
+.text-vertical-center {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.text-vertical-center h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 4.5em;
+    font-weight: 700;
+}
+
+
+
+.registerBtn{
+    margin: 0 auto;
+    padding-top: 10px;
+}
+
+.register{
+    padding: 50px 0;
+    background-color: #0AC2FF;
+}
+
+.form-horizontal h2{
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
