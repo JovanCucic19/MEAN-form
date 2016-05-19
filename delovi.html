@@ -1,0 +1,452 @@
+<h2>Login</h2>
+<% if(locals.error) { %>
+<div class="alert alert-danger"><%= error %></div>
+<% } %>
+<% if(locals.success) { %>
+<div class="alert alert-success"><%= success %></div>
+<% } %>
+<form method="post" class="pure-form">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username2" value="<%= locals.password || '' %>" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" class="form-control" />
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" >Login</button>
+        <script>
+            $(function () {
+                $("button").click(function () {
+                    var test = $("#username2").val();
+                    console.log(req.body);
+                });
+            });
+        </script>
+        <a href="/register" class="btn btn-link">Register</a>
+    </div>
+</form>
+
+
+
+<!------------------------------------------------------------->
+
+
+<body ng-app="validationApp" data-spy="scroll" data-target=".navbar-fixed-top">
+<!--LOGIN POPUP-->
+<div class="container">
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <h2>Login</h2>
+            <% if(locals.error) { %>
+            <div class="alert alert-danger"><%= error %></div>
+            <% } %>
+            <% if(locals.success) { %>
+            <div class="alert alert-success"><%= success %></div>
+            <% } %>
+            <form method="post" class="pure-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username2" value="<%= locals.password || '' %>" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" >Login</button>
+                    <script>
+                        $(function () {
+                            $("button").click(function () {
+                                var test = $("#username2").val();
+                                console.log(req.body);
+                            });
+                        });
+                    </script>
+                    <a href="/register" class="btn btn-link">Register</a>
+                </div>
+            </form>
+
+            <!--End of Modal content-->
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="#top">MeetMe</a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+
+                <li class="hidden">
+                    <a class="page-scroll" href="#top"></a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#about" id="mojKurac">About</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#login" data-toggle="modal" data-target="#myModal">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!--Navigation-->
+
+<header id="top" class="header">
+    <div class="text-vertical-center">
+        <h1>Come join MeetMe</h1>
+        <h3>Don't have an account?</h3>
+        <div class="registerBtn"><a href="#register" rel="">
+            <div class="btn btn-primary btn-lg">Register</div>
+        </a></div>
+    </div>
+</header>
+
+<section id="about" class="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg12 text-center">
+                <h2>About</h2>
+                <p class="lead">Conveniently situated on the harbour of Thessaloniki, within easy reach of the city
+                    centre,
+                    THE MET HOTEL provides outstanding comfort and sophisticated amenities for business and leisure
+                    travellers.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="register" class="register">
+    <div ng-controller="validationController as user" required>
+        <div class="container">
+
+            <form class="form-horizontal" role="form" name="registerForm" ng-submit="submitForm()" novalidate
+                  method="post" autocomplete="off">
+                <h2>Register Here!</h2>
+
+                <!--FIRST NAME-->
+                <div class="form-group"
+                     ng-class="{ 'has-error' : registerForm.firstName.$invalid && registerForm.firstName.$touched }">
+                    <label for="firstName" class="col-sm-3 control-label">First Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="firstName" name="firstName" ng-model="user.firstName" ng-minlength="2"
+                               ng-maxlength="16" required placeholder="First Name" class="form-control"
+                               capitalize-first>
+                        <div class="help-block" ng-messages="registerForm.firstName.$error"
+                             ng-if="registerForm.firstName.$touched">
+                            <p ng-message="minlength">Your first name must be at least 2 characters long</p>
+                            <p ng-message="maxlength">Your first name must be maximum 16 characters long</p>
+                            <p ng-message="required">Your first name is required.</p>
+                        </div>
+                    </div>
+                </div>
+                <!--FIRST NAME-->
+
+                <!--LAST NAME-->
+                <div class="form-group"
+                     ng-class="{ 'has-error' : registerForm.lastName.$invalid && registerForm.lastName.$touched }">
+                    <label for="lastName" class="col-sm-3 control-label">Last Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="lastName" name="lastName" ng-model="user.lastName" ng-minlength="2"
+                               ng-maxlength="16" required placeholder="Last Name" class="form-control" capitalize-first>
+                        <div class="help-block" ng-messages="registerForm.lastName.$error"
+                             ng-if="registerForm.lastName.$touched">
+                            <p ng-message="minlength">Your last name must be at least 2 characters long</p>
+                            <p ng-message="maxlength">Your last name must be maximum 16 characters long</p>
+                            <p ng-message="required">Your last name is required.</p>
+                        </div>
+                    </div>
+                </div>
+                <!--LAST NAME-->
+
+                <!--EMAIL-->
+                <div class="form-group"
+                     ng-class="{ 'has-error' : registerForm.email.$invalid && registerForm.email.$touched }">
+                    <label for="email" class="col-sm-3 control-label">Email</label>
+                    <div class="col-sm-9">
+                        <input type="email" id="email" name="email" ng-model="user.email"
+                               ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"
+                               required placeholder="Email" class="form-control" required>
+                        <div class="help-block" ng-messages="registerForm.email.$error"
+                             ng-if="registerForm.email.$touched">
+                            <p ng-message="pattern">Your email is not valid</p>
+                            <p ng-message="required">Your email is required</p>
+                        </div>
+                    </div>
+                </div>
+                <!--EMAIL-->
+
+                <!--USERNAME-->
+                <div class="form-group"
+                     ng-class="{ 'has-error' : registerForm.username.$invalid && registerForm.username.$touched }">
+                    <label for="username" class="col-sm-3 control-label">Username</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="username" name="username" ng-model="user.username" ng-minlength="4"
+                               ng-maxlength="16" ng-pattern="/^[a-zA-Z0-9]*$/" required placeholder="Username"
+                               class="form-control">
+                        <div class="help-block" ng-messages="registerForm.username.$error"
+                             ng-if="registerForm.username.$touched">
+                            <p ng-message="minlength">Your username must be at least 4 characters long</p>
+                            <p ng-message="maxlength">Your username must be maximum 16 characters long</p>
+                            <p ng-message="pattern">
+                                <You></You>
+                                r username can contain only alphanumeric characters
+                            </p>
+                            <p ng-message="required">Your username is required</p>
+                        </div>
+                    </div>
+                </div>
+                <!--USERNAME-->
+
+                <!--PASSWORD-->
+                <div class="form-group"
+                     ng-class="{ 'has-error' : registerForm.password.$invalid && registerForm.password.$touched }">
+                    <label for="password" class="col-sm-3 control-label">Password</label>
+                    <div class="col-sm-9">
+                        <input type="password" id="password" name="password" ng-model="user.password" ng-minlength="6"
+                               ng-maxlength="32" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required
+                               placeholder="Password" class="form-control">
+                        <div class="help-block" ng-messages="registerForm.password.$error"
+                             ng-if="registerForm.password.$touched">
+                            <p ng-message="minlength">Your password must be at least 4 characters long</p>
+                            <p ng-message="maxlength">Your password must be maximum 32 characters long</p>
+                            <p ng-message="pattern">Your Password must contain one lower & uppercase letter, and one
+                                non-alpha character(a number or a symbol.) </p>
+                            <p ng-message="required">Your password is required</p>
+                        </div>
+                    </div>
+                </div>
+                <!--PASSWORD-->
+
+                <!--CONFIRM PASSWORD-->
+                <div class="form-group"
+                     ng-class="{ 'has-error' : registerForm.confirmPassword.$invalid && registerForm.confirmPassword.$touched }">
+                    <label for="confirmPassword" class="col-sm-3 control-label">Confirm Password</label>
+                    <div class="col-sm-9">
+                        <input type="password" id="confirmPassword" name="confirmPassword"
+                               ng-model="user.confirmPassword" match-password="password" placeholder="Confirm Password"
+                               class="form-control" required>
+                        <div class="help-block" ng-messages="registerForm.confirmPassword.$error"
+                             ng-if="registerForm.password.$touched">
+                            <p ng-message="passwordMatch">Passwords don't match</p>
+                            <p ng-message="required">Your password is required</p>
+                        </div>
+                    </div>
+                </div>
+                <!--CONFIRM PASSWORD-->
+
+                <!--DATE OF BIRTH-->
+                <div class="form-group" ng-controller="ctrlDateController">
+                    <label for="birthDate" class="col-sm-3 control-label">Date of Birth</label>
+                    <div class="col-sm-9">
+                        <input type="date" id="birthDate" class="form-control" max="{{minAge | date:'yyyy-MM-dd'}}"
+                               required>
+                    </div>
+                </div>
+                <!--DATE OF BIRTH-->
+
+                <!--GENDER-->
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Your Gender</label>
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label class="radio-inline">
+                                    <input type="radio" name="genderRadio" id="maleRadio" value="Male" checked="">Male
+                                </label>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="radio-inline">
+                                    <input type="radio" name="genderRadio" id="femaleRadio" value="Female">Female
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--GENDER-->
+
+                <!--YOUR PREFERENCE-->
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Your Preference</label>
+                    <div class="col-sm-9">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="maleCheckbox" value="Male">Male
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="femaleCheckbox" value="Female">Female
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <!--YOUR PREFERENCE-->
+
+                <!--ToC-->
+                <div class="form-group" >
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="terms" required>I accept
+                                <a href="#" data-toggle="modal" data-target="#myModal2">terms &conditions</a>
+                            </label>
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal2" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Terms:</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet
+                                                libero non mi molestie sagittis accumsan non quam. Vestibulum eget eros
+                                                sit amet diam mattis fermentum. Pellentesque sapien odio, laoreet ac
+                                                aliquam id, elementum in arcu. In ornare felis tortor, at imperdiet ante
+                                                cursus a. In hac habitasse platea dictumst. Praesent posuere accumsan
+                                                lectus ac faucibus. Ut nisl purus, fringilla auctor leo et, congue porta
+                                                velit. Nam vitae erat commodo, vestibulum mauris at, rutrum orci. Duis
+                                                ullamcorper sed arcu a vehicula. Proin iaculis faucibus nisi. Aenean
+                                                pulvinar mollis eros, non gravida ante. Vestibulum et pretium velit,
+                                                vitae lobortis urna. Ut blandit felis augue, quis luctus dui ultrices
+                                                ut. Vivamus sit amet urna vitae urna cursus tincidunt. Nulla facilisi.
+                                                Cras sit amet elit in elit vulputate euismod ut quis metus.
+
+                                                Mauris id lacinia dui. Duis vitae hendrerit sem. Nulla a volutpat purus.
+                                                Nulla sit amet facilisis purus, in bibendum metus. Duis mollis iaculis
+                                                ipsum feugiat mollis. Interdum et malesuada fames ac ante ipsum primis
+                                                in faucibus. Quisque id imperdiet nisl. Aliquam quis sapien auctor,
+                                                pharetra turpis sed, pellentesque leo. Sed sed viverra ligula. Morbi non
+                                                mauris ullamcorper, sagittis libero vitae, ullamcorper massa. Sed et
+                                                lacus mi. In hac habitasse platea dictumst. Phasellus sit amet varius
+                                                augue.
+
+                                                Aliquam congue condimentum arcu, ut auctor turpis lobortis sit amet.
+                                                Phasellus sed pellentesque ex. Praesent sagittis euismod turpis, eget
+                                                lobortis nisi lacinia at. Suspendisse euismod pulvinar justo, vitae
+                                                faucibus turpis mollis blandit. Sed nisl ex, consectetur eu molestie
+                                                vel, tincidunt vitae turpis. Donec scelerisque enim lacinia risus
+                                                fringilla, non sodales felis sollicitudin. Sed elementum purus nec
+                                                sapien tristique, vitae convallis magna fermentum. Curabitur leo magna,
+                                                rhoncus sit amet facilisis vitae, interdum vitae nunc.
+
+                                                Aliquam eu purus euismod, pretium nibh sed, vehicula magna. Vestibulum
+                                                ac malesuada lectus. Donec nec elit ut sem molestie condimentum. Proin
+                                                molestie, nulla et tincidunt porttitor, justo nulla ornare quam, at
+                                                convallis magna ante at arcu. Duis cursus massa nec egestas pretium.
+                                                Vivamus euismod dignissim volutpat. Vestibulum finibus quis odio sit
+                                                amet lobortis. Suspendisse posuere mollis mattis. In mauris lacus,
+                                                commodo eget sem in, porta maximus magna. Sed lorem leo, pulvinar a
+                                                ultricies vitae, tempor eget quam. Morbi aliquam mi et condimentum
+                                                finibus. Aliquam vel hendrerit sapien.
+
+                                                Donec mauris leo, tincidunt sit amet tellus facilisis, tristique
+                                                condimentum mi. Sed ac ultricies diam. Proin placerat convallis arcu vel
+                                                luctus. Vivamus elementum mauris at metus scelerisque rhoncus. Duis
+                                                posuere nibh in tellus hendrerit.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--ToC-->
+
+                <!--REGISTER BTN-->
+                <div class="form-group">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <button type="submit" class="btn btn-primary btn-block" ng-disabled="registerForm.$invalid">
+                            Register
+                        </button>
+                    </div>
+                </div>
+                <!--REGISTER BTN-->
+            </form>
+        </div>
+    </div>
+</section>
+
+</body>
+
+
+<!------------------------------------------------------------------------->
+
+
+
+
+
+<!--Start of Username check-->
+
+
+<div class="form-group"
+     ng-class="{ 'has-error' : registerForm.firstName.$invalid && registerForm.firstName.$touched }">
+    <label for="firstName" class="col-sm-3 control-label">First Name</label>
+    <div class="col-sm-9">
+        <input type="text" id="firstName" name="firstName" ng-model="user.firstName"
+               ng-minlength="2"
+               ng-maxlength="16" required placeholder="First name" class="form-control"
+               capitalize-first value="<%= locals.firstName || '' %>" required>
+        <div class="help-block" ng-messages="registerForm.firstName.$error"
+             ng-if="registerForm.firstName.$touched">
+            <p ng-message="minlength">Your first name must be at least 2 characters long</p>
+            <p ng-message="maxlength">Your first name must be maximum 16 characters long</p>
+            <p ng-message="required">Your first name is required.</p>
+        </div>
+    </div>
+</div>
+
+<!--End of Username check-->
+
+<!--Start of Password check-->
+
+<div class="form-group"
+     ng-class="{ 'has-error' : registerForm.password.$invalid && registerForm.password.$touched }">
+    <label for="password" class="col-sm-3 control-label">Password</label>
+    <div class="col-sm-9">
+        <input type="password" id="password" name="password" ng-model="user.password"
+               ng-minlength="6"
+               ng-maxlength="32" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required
+               placeholder="Password" class="form-control">
+        <div class="help-block" ng-messages="registerForm.password.$error"
+             ng-if="registerForm.password.$touched">
+            <p ng-message="minlength">Your password must be at least 4 characters long</p>
+            <p ng-message="maxlength">Your password must be maximum 32 characters long</p>
+            <p ng-message="pattern">Your Password must contain one lower & uppercase letter, and one
+                non-alpha character(a number or a symbol.) </p>
+            <p ng-message="required">Your password is required</p>
+        </div>
+    </div>
+</div>
+<!--     </div>
+             </div>-->
+<!--End of Password check-->

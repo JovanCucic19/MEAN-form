@@ -38,5 +38,7 @@ ctrlDate.controller('ctrlDateController', function ($scope) {
     $scope.minAge = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
 });
 
-angular.module('validationApp', ['validationModule', 'passwordMatchModule', 'ctrlDateModule']);
+
+
+angular.module('validationApp', ['validationModule', 'passwordMatchModule', 'ctrlDateModule'/*, 'bootstrapModal'*/]);
 

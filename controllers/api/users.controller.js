@@ -10,6 +10,9 @@ router.get('/current', getCurrentUser);
 router.put('/:_id', updateUser);
 router.delete('/:_id', deleteUser);
 
+
+/*POGLEDAJ RUTE, MOZDA BI TREBALO DA SE BINDUJU*/
+
 module.exports = router;
 
 function authenticateUser(req, res) {
@@ -18,6 +21,7 @@ function authenticateUser(req, res) {
             if (token) {
                 // authentication successful
                 res.send({ token: token });
+                
             } else {
                 // authentication failed
                 res.sendStatus(401);

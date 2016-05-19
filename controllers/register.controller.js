@@ -13,6 +13,8 @@ router.post('/', function (req, res) {
         url: config.apiUrl + '/users/register',
         form: req.body,
         json: true
+
+
     }, function (error, response, body) {
         if (error) {
             return res.render('register', { error: 'An error occurred' });
@@ -26,10 +28,12 @@ router.post('/', function (req, res) {
                 username: req.body.username
             });
         }
+        console.log(req.body);
 
         // return to login page with success message
         req.session.success = 'Registration successful';
         return res.redirect('/login');
+
     });
 });
 
