@@ -30,7 +30,7 @@
     <% if(locals.error) { %>
         <div class="alert alert-danger"><%= error %></div>
     <% } %>
-    <form method="post" class="loginForm" action="/register">
+    <form method="post" class="loggit inForm" action="/register">
         <div class="form-group">
             <label for="firstName">First name</label>
             <input type="text" name="firstName" id="firstName" class="form-control" value="<%= locals.firstName || '' %>" required />
